@@ -12,7 +12,7 @@ public class Tester {
 		String name = "";
 		while(searchChoice != 0) {
 			
-			System.out.println("\n0. Exit\n1. Linear search\n2. Binary search\n");
+			System.out.println("\n0. click zero for Exit \n1. Linear search\n2. Binary search\n");
 			System.out.print("Enter your choice: ");
 			searchChoice = sc.nextInt();
 			
