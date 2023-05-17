@@ -1,0 +1,137 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Sort {
+	
+	public static List<CricketTeam> swap(List<CricketTeam> tempTeam, int i, int j){
+		List<CricketTeam> teams = tempTeam;
+		CricketTeam temp1 = teams.get(i);
+		CricketTeam temp2 = teams.get(j);
+		teams.remove(j);
+		teams.remove(i);					
+		teams.add(i, temp2);
+		teams.add(j, temp1);
+		return teams;
+	}
+
+	public static List<CricketTeam> selectionSortByPoints(List<CricketTeam> tempTeam) {
+		List<CricketTeam> teams = tempTeam;
+		System.out.println("Unsorted-" + teams.toString());
+		int pass = 0, itr = 0, swap = 0;
+		for(int i=0; i<teams.size()-1; i++) {
+			pass++;
+			for(int j=i+1; j<teams.size(); j++) {
+				itr++;
+				if(teams.get(i).getPoints()>teams.get(j).getPoints()) {
+					swap++;
+					teams = swap(teams, i, j);
+				}
+			}
+		}
+		return teams;
+//		System.out.println("Pass = "+pass+" itr = "+itr+" swap = "+swap);
+	}
+	
+	
+	public static List<CricketTeam> selectionSortByTeamName(List<CricketTeam> tempTeam) {
+		List<CricketTeam> teams = tempTeam;
+		for(int i=0; i<teams.size()-1; i++) {
+			for(int j=i+1; j<teams.size(); j++) {
+				if((teams.get(i).getTeamName()).compareTo(teams.get(j).getTeamName()) > 0) {
+					teams = swap(teams, i, j);
+				}
+			}
+		}
+		return teams;
+	}
+	
+	public static List<CricketTeam> bubbleSortByPoints(List<CricketTeam> tempTeam) {
+		List<CricketTeam> teams = tempTeam;
+		Boolean flag = false;
+		int pass = 0, itr = 0, swap = 0;
+		for(int j = 1; j < teams.size(); j++) {
+			pass++;
+			for(int i = 0; i < teams.size()-j; i++) {
+				itr++;
+				if(teams.get(i).getPoints() > teams.get(i+1).getPoints()) {
+					swap++;
+					teams = swap(teams, i, i+1);
+					flag = true;
+				}
+			}
+			if(flag == false)
+				break;
+		}
+		return teams;
+//		System.out.println("Pass = "+pass+" itr = "+itr+" swap = "+swap);
+	}
+
+	public static List<CricketTeam> insertionSortByPoints(List<CricketTeam> tempTeam) {
+		List<CricketTeam> teams = tempTeam;
+		for(int i = 1; i < teams.size(); i++)
+		{
+			int j;
+			CricketTeam temp = teams.get(i);
+			for(j = i-1; j>=0 && teams.get(j).getPoints()>temp.getPoints();j--) {		//if first condition false second condition is not evaluated ==> &&
+//				arr[j+1] = arr[j];
+			
+				teams.remove(j+1);
+				teams.add(j+1, teams.get(j));
+			}
+			teams.remove(j+1);
+			teams.add(j+1, temp);
+		}
+		return teams;
+	}
+	
+	public static void mergeSortByPoints(List<CricketTeam> tempTeam) {
+		CricketTeam []arr = (CricketTeam[]) tempTeam.toArray();
+		mergeSortByPoints(arr, 0, arr.length-1);
+	}
+	
+	public static void mergeSortByPoints(CricketTeam []arr, int left, int right) {
+		// if partition has single element, return
+		if(left == right)
+			return;
+		// divide array into two equal partitions
+		int mid = (left + right)/2;
+		// sort left and right partitions
+		mergeSortByPoints(arr, left, mid);
+		mergeSortByPoints(arr, mid+1, right);
+		// allocate temp array
+		CricketTeam []temp = new CricketTeam[(right - left) + 1];
+		// merge two sorted partitions into temp array
+		int i = left, j = mid + 1, k = 0;
+		while(i <= mid && j <= right) {
+//			if(arr[i] < arr[j]) {
+//				temp[k] = arr[i];
+//				i++;
+//				k++;
+//			}else {
+//				temp[k] = arr[j];
+//				j++;
+//				k++;
+//			}
+			temp[k++] = (arr[i].getPoints() < arr[j].getPoints()) ? arr[i++] : arr[j++];
+		}
+		while(i <= mid) {
+//			temp[k] = arr[i];
+//			i++;
+//			k++;
+			temp[k++] = arr[i++];
+		}
+		while(j <= right) {
+//			temp[k] = arr[j];
+//			j++;
+//			k++;
+			temp[k++] = arr[j++];
+		}
+		// overwrite temp array back to original array (from left index onwards)
+		for(int a = 0; a < temp.length; a++) {
+			arr[left + a] = temp[a];
+		}
+		System.out.println("\nSorted by points using Merge sort:\n " + Arrays.toString(arr));
+		
+	}
+}

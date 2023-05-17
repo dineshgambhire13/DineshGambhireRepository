@@ -1,0 +1,43 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Tester {
+	
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Scanner sc = new Scanner(System.in);
+		List<CricketTeam> teams = new ArrayList<CricketTeam>();
+		
+		int operationChoice = 1;
+		while(operationChoice != 0) {
+			
+			System.out.println("0. Exit\n1. Add team\n2. Search\n3. Sort\n ");
+			System.out.print("Enter your choice: ");
+			operationChoice = sc.nextInt();
+			
+			switch (operationChoice) {
+				case 0:
+					System.out.println("Thank you!");
+					break;
+				case 1:
+					CricketTeam.createTeam(sc);
+					break;
+				case 2:
+					
+					break;
+				case 3:
+					
+					break;
+				default:
+					System.out.println("Invalid choice, Please enter valid number...");
+					break;
+			}
+		}
+		
+		sc.close();
+	}
+
+}

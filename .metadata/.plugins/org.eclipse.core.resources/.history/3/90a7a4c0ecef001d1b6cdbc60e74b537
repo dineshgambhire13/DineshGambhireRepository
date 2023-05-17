@@ -1,0 +1,97 @@
+import java.util.Scanner;
+
+public class CricketTeam implements Comparable<CricketTeam>{
+
+	private String teamName;
+	private int matchesPlayed;
+	private int wins;
+	private int points;
+	private double netRunRate;
+	
+	
+	public CricketTeam(String teamName) {
+		this.teamName = teamName;
+		this.matchesPlayed = 0;
+		this.wins = 0;
+		this.points = 0;
+		this.netRunRate = 0.00;
+	}
+	
+	public String getTeamName() {
+		return teamName;
+	}
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
+	}
+	public int getMatchesPlayed() {
+		return matchesPlayed;
+	}
+	public void setMatchesPlayed(int matchesPlayed) {
+		while(matchesPlayed < 0) {
+			System.out.print("Invalid input, Please enter valid number: ");
+			matchesPlayed = new Scanner(System.in).nextInt();
+		}
+		this.matchesPlayed = matchesPlayed;
+	}
+	public int getWins() {
+		return wins;
+	}
+	public void setWins(int wins) {
+		while(wins < 0) {
+			System.out.print("Invalid input, Please enter valid number: ");
+			wins = new Scanner(System.in).nextInt();
+		}
+		this.wins = wins;
+	}
+	public int getPoints() {
+		return points;
+	}
+	public void setPoints(int points) {
+		while(points < 0) {
+			System.out.print("Invalid input, Please enter valid number: ");
+			points = new Scanner(System.in).nextInt();
+		}
+		this.points = points;
+	}
+	public double getNetRunRate() {
+		return netRunRate;
+	}
+	public void setNetRunRate(double netRunRate) {
+		this.netRunRate = netRunRate;
+	}
+
+	@Override
+	public String toString() {
+		return "CricketTeam [teamName=" + teamName + ", matchesPlayed=" + matchesPlayed + ", wins=" + wins + ", points="
+				+ points + ", netRunRate=" + netRunRate + "]";
+	}
+
+	@Override
+	public int compareTo(CricketTeam other) {
+		// TODO Auto-generated method stub
+		return this.getTeamName().compareTo(other.getTeamName());
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		 if (this == obj)
+	            return true;
+	     if (obj == null || this.getClass() != obj.getClass())
+	         return false;
+	     CricketTeam team = (CricketTeam) obj;
+	     return this.getTeamName().equals(team.getTeamName());
+	}
+	
+	public static CricketTeam createTeam(Scanner sc) {
+		System.out.print("Enter team name: ");
+		CricketTeam team = new CricketTeam(sc.next());
+		System.out.print("Enter number of matches played: ");
+		team.setMatchesPlayed(sc.nextInt());
+		System.out.print("Enter number of matches win: ");
+		team.setWins(sc.nextInt());
+		System.out.print("Enter Net Run Rate: ");
+		team.setNetRunRate(sc.nextDouble());
+		return team;
+	}
+}

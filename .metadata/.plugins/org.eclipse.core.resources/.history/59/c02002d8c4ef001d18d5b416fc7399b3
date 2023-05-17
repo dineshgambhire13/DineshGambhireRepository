@@ -1,0 +1,112 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Tester {
+	
+	public static void search(Scanner sc, List<CricketTeam> teams) {
+		
+		int searchChoice = 1;
+		while(searchChoice != 0) {
+			
+			System.out.print("Enter team name you want to search: ");
+			String name = sc.nextLine();
+			
+			System.out.println("0. Exit\n1. Linear search\n2. Binary search\n");
+			System.out.print("Enter your choice: ");
+			searchChoice = sc.nextInt();
+			
+			switch (searchChoice) {
+				case 0:
+					System.out.println("Thank you!");
+					break;
+				case 1:
+					//linear search
+					int index = Search.linearSearch(teams, name);
+					if(index != -1) {
+						teams.get(index).toString();
+					}else {
+						System.out.println("Team not found...");
+					}
+					break;
+				case 2:
+					//binary search
+					break;
+				default:
+					System.out.println("Invalid choice, Please enter valid number...");
+					break;
+			}
+		}
+	}
+	
+public static void sort(Scanner sc, List<CricketTeam> teams) {
+		
+		int sortChoice = 1;
+		while(sortChoice != 0) {
+			System.out.println("0. Exit\n1. Selection sort\n2. Bubble sort\n3. Insertion sort\n4. Merge sort\n5. Quick sort");
+			System.out.print("Enter your choice: ");
+			sortChoice = sc.nextInt();
+			
+			switch (sortChoice) {
+				case 0:
+					System.out.println("Thank you!");
+					break;
+				case 1:
+					//Selection sort
+					
+					break;
+				case 2:
+					//Bubble sort
+					break;
+				case 3:
+					//Insertion sort
+					break;
+				case 4:
+					//Merge sort
+					break;
+				case 5:
+					//Quick sort
+					break;
+				default:
+					System.out.println("Invalid choice, Please enter valid number...");
+					break;
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Scanner sc = new Scanner(System.in);
+		List<CricketTeam> teams = new ArrayList<CricketTeam>();
+		
+		int operationChoice = 1;
+		while(operationChoice != 0) {
+			
+			System.out.println("0. Exit\n1. Add team\n2. Search\n3. Sort\n ");
+			System.out.print("Enter your choice: ");
+			operationChoice = sc.nextInt();
+			
+			switch (operationChoice) {
+				case 0:
+					System.out.println("Thank you!");
+					break;
+				case 1:
+					teams.add(CricketTeam.createTeam(sc));
+					break;
+				case 2:
+					search(sc, teams);
+					break;
+				case 3:
+					sort(sc, teams);
+					break;
+				default:
+					System.out.println("Invalid choice, Please enter valid number...");
+					break;
+			}
+		}
+		
+		sc.close();
+	}
+
+}

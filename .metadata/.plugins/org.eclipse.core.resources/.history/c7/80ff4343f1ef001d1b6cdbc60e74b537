@@ -1,0 +1,25 @@
+import java.util.List;
+
+public class Sort {
+
+	public static List<CricketTeam> selectionSort(List<CricketTeam> teams) {
+		System.out.println(teams.toString());
+		int pass = 0, itr = 0, swap = 0;
+		for(int i=0; i<teams.size()-1; i++) {
+			pass++;
+			for(int j=i+1; j<teams.size(); j++) {
+				itr++;
+				if(teams.get(i).getPoints()>teams.get(j).getPoints()) {
+					swap++;
+					CricketTeam temp1 = teams.get(i);
+					CricketTeam temp2 = teams.get(j);
+					teams.add(i, temp2);
+					teams.add(j, temp1);
+				}
+			}
+		}
+		System.out.println(teams.toString());
+		return teams;
+//		System.out.println("Pass = "+pass+" itr = "+itr+" swap = "+swap);
+	}
+}

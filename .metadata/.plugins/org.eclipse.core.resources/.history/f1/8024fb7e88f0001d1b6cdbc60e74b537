@@ -1,0 +1,45 @@
+import java.util.List;
+
+public class Sort {
+
+	public static List<CricketTeam> selectionSortByPoints(List<CricketTeam> tempTeam) {
+		List<CricketTeam> teams = tempTeam;
+		System.out.println("Unsorted-" + teams.toString());
+		int pass = 0, itr = 0, swap = 0;
+		for(int i=0; i<teams.size()-1; i++) {
+			pass++;
+			for(int j=i+1; j<teams.size(); j++) {
+				itr++;
+				if(teams.get(i).getPoints()>teams.get(j).getPoints()) {
+					swap++;
+					CricketTeam temp1 = teams.get(i);
+					CricketTeam temp2 = teams.get(j);
+					teams.remove(j);
+					teams.remove(i);					
+					teams.add(i, temp2);
+					teams.add(j, temp1);
+				}
+			}
+		}
+		return teams;
+//		System.out.println("Pass = "+pass+" itr = "+itr+" swap = "+swap);
+	}
+	
+	
+	public static List<CricketTeam> selectionSortByTeamName(List<CricketTeam> tempTeam) {
+		List<CricketTeam> teams = tempTeam;
+		for(int i=0; i<teams.size()-1; i++) {
+			for(int j=i+1; j<teams.size(); j++) {
+				if((teams.get(i).getTeamName()).compareTo(teams.get(j).getTeamName()) > 0) {
+					CricketTeam temp1 = teams.get(i);
+					CricketTeam temp2 = teams.get(j);
+					teams.remove(j);
+					teams.remove(i);					
+					teams.add(i, temp2);
+					teams.add(j, temp1);
+				}
+			}
+		}
+		return teams;
+	}
+}
