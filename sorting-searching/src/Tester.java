@@ -56,7 +56,7 @@ public static void sort(Scanner sc, List<CricketTeam> teams) {
 		
 		int sortChoice = 1;
 		while(sortChoice != 0) {
-			System.out.println("\n0. Exit\n1. Selection sort\n2. Bubble sort\n3. Insertion sort\n4. Merge sort\n5. Quick sort\n");
+			System.out.println("\n0. Exit\n1. Selection sort\n2. Bubble sort\n3. Insertion sort\n");
 			System.out.print("Enter your choice: ");
 			sortChoice = sc.nextInt();
 			
